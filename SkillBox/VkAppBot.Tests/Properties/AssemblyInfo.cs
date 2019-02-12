@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("MetcastDataTransformer")]
+[assembly: AssemblyTitle("VkAppBot.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MetcastDataTransformer")]
+[assembly: AssemblyProduct("VkAppBot.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("f8c3de16-90fd-44a7-a532-300af3d3fdcf")]
+[assembly: Guid("77961677-55c4-4d85-850e-9f2e84bcd698")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

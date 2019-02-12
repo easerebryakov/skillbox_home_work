@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetcastDataTransformer", "MetcastDataTransformer\MetcastDataTransformer.csproj", "{F8C3DE16-90FD-44A7-A532-300AF3D3FDCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkAppBot", "VkAppBot\VkAppBot.csproj", "{C884E0D9-CC12-410D-8B9E-D50B97262D3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkAppBot.Tests", "VkAppBot.Tests\VkAppBot.Tests.csproj", "{77961677-55C4-4D85-850E-9F2E84BCD698}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F8C3DE16-90FD-44A7-A532-300AF3D3FDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8C3DE16-90FD-44A7-A532-300AF3D3FDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8C3DE16-90FD-44A7-A532-300AF3D3FDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C884E0D9-CC12-410D-8B9E-D50B97262D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C884E0D9-CC12-410D-8B9E-D50B97262D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C884E0D9-CC12-410D-8B9E-D50B97262D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C884E0D9-CC12-410D-8B9E-D50B97262D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77961677-55C4-4D85-850E-9F2E84BCD698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77961677-55C4-4D85-850E-9F2E84BCD698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77961677-55C4-4D85-850E-9F2E84BCD698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77961677-55C4-4D85-850E-9F2E84BCD698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
