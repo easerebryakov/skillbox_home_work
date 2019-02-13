@@ -96,6 +96,7 @@ namespace VkAppBot
 
 					var offset = 0;
 					var batchSize = 1000;
+					var maxCountMembersInGroup = 10000;
 					//key - city id, value - count users in city
 					var citiesDictionary = new Dictionary<string, int>();
 					var countUsersWithoutCities = 0;
@@ -104,10 +105,10 @@ namespace VkAppBot
 					{
 						if (vkClient.TryGetMembersCountFromGroup(inputMessageStr, out var membersCount))
 						{
-							if (membersCount > 1000)
+							if (membersCount > maxCountMembersInGroup)
 							{
 								webClient.DownloadString(string.Format(urlBotMsg + "{0}&message={1}", from,
-									$"Бот еще маленький. В группе {inputMessageStr} - {membersCount} человек. Бот умеет считать только до 1000"));
+									$"Бот еще маленький. В группе {inputMessageStr} - {membersCount} человек. Бот умеет считать только до {maxCountMembersInGroup}"));
 								break;
 							}
 						}

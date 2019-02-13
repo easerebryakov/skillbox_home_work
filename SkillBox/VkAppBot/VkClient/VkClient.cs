@@ -22,7 +22,8 @@ namespace VkAppBot
 		{
 			try
 			{
-				var result = vkApi.Groups.GetById(new string[] { }, groupId, GroupsFields.MembersCount).ToList();
+				//error (One of the parameters specified was missing or invalid: group_ids is undefined) when id is public38349928. wtf client???
+				var result = vkApi.Groups.GetById(new string[] {}, groupId, GroupsFields.MembersCount).ToList();
 				membersCount = result[0].MembersCount;
 				return true;
 			}
