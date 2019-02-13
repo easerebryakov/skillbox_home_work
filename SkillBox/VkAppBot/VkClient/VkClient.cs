@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkNet;
+using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -14,6 +16,21 @@ namespace VkAppBot
 		public VkClient(VkApi vkApi)
 		{
 			this.vkApi = vkApi;
+		}
+
+		public bool TryGetMembersCountFromGroup(string groupId, out int? membersCount)
+		{
+			try
+			{
+				var result = vkApi.Groups.GetById(new string[] { }, groupId, GroupsFields.MembersCount).ToList();
+				membersCount = result[0].MembersCount;
+				return true;
+			}
+			catch (InvalidGroupIdException e)
+			{
+				membersCount = null;
+				return false;
+			}
 		}
 
 		public bool TryGetMembersIdsFromGroup(string groupId, int offset, int count, out IEnumerable<int> membersIds)

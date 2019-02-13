@@ -14,10 +14,10 @@ namespace VkAppBot
 {
 	public class BotRunner
 	{
-		private static ILog Log = new Log4netWrapper();
-		private static ColorConsoleLog ConsoleLog = new ColorConsoleLog();
+		private static readonly ILog Log = new Log4netWrapper();
+		private static readonly ColorConsoleLog ConsoleLog = new ColorConsoleLog();
 
-		private static string Token =
+		private static readonly string Token =
 			"";
 
 		public static void Main(string[] args)
@@ -56,7 +56,7 @@ namespace VkAppBot
 
 		}
 
-		private static void RunBot(VkApi vkApi, VkClient vkClient)
+		private static void RunBot(VkApi vkApi, IVkClient vkClient)
 		{
 			var webClient = new WebClient
 			{
@@ -90,9 +90,9 @@ namespace VkAppBot
 						continue;
 					
 					var inputMessageStr = messageObj["object"]["body"].ToString();
+					ConsoleLog.Info($"Input message: {inputMessageStr}");
 					var from = messageObj["object"]["user_id"].ToString();
 					Log.Info($"Input message: {inputMessageStr}");
-
 
 					var offset = 0;
 					var batchSize = 1000;
@@ -102,22 +102,23 @@ namespace VkAppBot
 					var urlBotMsg = $"https://api.vk.com/method/messages.send?v=5.41&access_token={Token}&user_id=";
 					while (true)
 					{
-						var isExist = vkClient.TryGetMembersIdsFromGroup(inputMessageStr, offset, batchSize, out var membersIds);
-						if (!isExist)
+						if (vkClient.TryGetMembersCountFromGroup(inputMessageStr, out var membersCount))
+						{
+							if (membersCount > 1000)
+							{
+								webClient.DownloadString(string.Format(urlBotMsg + "{0}&message={1}", from,
+									$"Бот еще маленький. В группе {inputMessageStr} - {membersCount} человек. Бот умеет считать только до 1000"));
+								break;
+							}
+						}
+						else
 						{
 							webClient.DownloadString(string.Format(urlBotMsg + "{0}&message={1}", from,
 								$"Неверный идентификатор группы: {inputMessageStr}"));
-							//has not token
-							//vkApi.Messages.Send(new MessagesSendParams
-							//{
-							//	Message = $"Неверный идентификатор группы: {inputMessageStr}",
-							//	UserId = long.Parse(from),
-							//	RandomId = new Random().Next(),
-								
-							//});
 							break;
 						}
 
+						vkClient.TryGetMembersIdsFromGroup(inputMessageStr, offset, batchSize, out var membersIds);
 						var cities = vkClient.GetUsersCities(membersIds.Select(i => i.ToString()).ToArray());
 						foreach (var city in cities)
 						{
