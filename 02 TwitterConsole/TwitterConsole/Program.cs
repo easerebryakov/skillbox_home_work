@@ -28,11 +28,16 @@ namespace TwitterConsole
 			var tweetsFromServiceCount = tweets.Count;
 			var tweetsShowCount = maxShowCount <= tweetsFromServiceCount
 				? maxShowCount
-				: tweetsFromServiceCount; 
+				: tweetsFromServiceCount;
+
+			var nowDateTime = DateTime.Now;
 
 			for (var i = tweetsShowCount - 1; i >= 0; i--)
 			{
-				Console.WriteLine(tweets[i].Text);
+				var tweet = tweets[i];
+				var creatingDate = tweet.CreatedDate;
+				var ageDescriprion = DateTimeCalculator.GetAgeDescription(creatingDate, nowDateTime);
+				Console.WriteLine($"{tweet.Text} - {ageDescriprion}");
 				Console.WriteLine();
 			}
 
