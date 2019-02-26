@@ -12,7 +12,7 @@ namespace TwitterConsole
 		public static string GetAgeDescription(DateTime creatingDateTime, DateTime nowDateTime)
 		{
 			var age = CalculateAge(creatingDateTime, nowDateTime);
-			return $"Days: {age.Days}. Hours: {age.Hours}. Minutes: {age.Minutes}";
+			return $"Со дня публикации прошло: Days: {age.Days}. Hours: {age.Hours}. Minutes: {age.Minutes}";
 		}
 	}
 }
