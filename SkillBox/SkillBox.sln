@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinMaxDouble", "MinMaxDoubl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringsTransformer", "StringsTransformer\StringsTransformer.csproj", "{16889F49-037B-4F2D-9517-F3A7452FED90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayApp", "ArrayApp\ArrayApp.csproj", "{14DC9C4B-0962-48E6-8283-035D62B5C303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore", "OnlineStore\OnlineStore.csproj", "{3381A10F-229A-49A1-987A-3E18E352DD3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{16889F49-037B-4F2D-9517-F3A7452FED90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16889F49-037B-4F2D-9517-F3A7452FED90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16889F49-037B-4F2D-9517-F3A7452FED90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14DC9C4B-0962-48E6-8283-035D62B5C303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DC9C4B-0962-48E6-8283-035D62B5C303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DC9C4B-0962-48E6-8283-035D62B5C303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DC9C4B-0962-48E6-8283-035D62B5C303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3381A10F-229A-49A1-987A-3E18E352DD3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3381A10F-229A-49A1-987A-3E18E352DD3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3381A10F-229A-49A1-987A-3E18E352DD3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3381A10F-229A-49A1-987A-3E18E352DD3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
