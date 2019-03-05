@@ -20,5 +20,7 @@ namespace TwitterConsole.Objects
 		{
 			return new string[] { };
 		}
+
+		public override string ToString() => TwittMessage;
 	}
 }
