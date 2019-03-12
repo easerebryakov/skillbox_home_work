@@ -11,23 +11,37 @@ namespace TwitterConsole
 	{
 		public static void Main(string[] args)
 		{
+			try
+			{
+				Run();
+			}
+			catch (TwitterApiException e)
+			{
+				Console.WriteLine($"При работе с Api твиттера произошла ошибка:\n{e}");
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"При работе приложения произошла неизвестная ошибка:\n{e}");
+			}
+		}
+
+		private static void Run()
+		{
 			const string consumerKey = "";
 			const string consumerSecret = "";
 			var service = new TwitterService(consumerKey, consumerSecret);
-
-			var requestToken = service.GetRequestToken();
-
-			var uri = service.GetAuthorizationUri(requestToken);
+			var requestToken = service.Execute(ts => ts.GetRequestToken());
+			var uri = service.Execute(ts => ts.GetAuthorizationUri(requestToken));
 			Process.Start(uri.ToString());
 
 			var verifier = Console.ReadLine();
-			var access = service.GetAccessToken(requestToken, verifier);
+			var access = service.Execute(ts => ts.GetAccessToken(requestToken, verifier));
 
-			service.AuthenticateWith(access.Token, access.TokenSecret);
+			service.Execute(ts => ts.AuthenticateWith(access.Token, access.TokenSecret));
 
 			#region tweets
 
-			var tweets = service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions()).ToList();
+			var tweets = service.Execute(ts => ts.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions()).ToList());
 			const int maxShowCount = 15;
 			var tweetsFromServiceCount = tweets.Count;
 			var tweetsShowCount = maxShowCount <= tweetsFromServiceCount
@@ -51,7 +65,7 @@ namespace TwitterConsole
 			#region trends
 
 			Console.WriteLine("Тренды:");
-			var trends = service.ListLocalTrendsFor(new ListLocalTrendsForOptions { Id = 1 }); // 1 - весь мир
+			var trends = service.Execute(ts => ts.ListLocalTrendsFor(new ListLocalTrendsForOptions {Id = 1})); // 1 - весь мир
 
 			foreach (var trend in trends)
 			{
