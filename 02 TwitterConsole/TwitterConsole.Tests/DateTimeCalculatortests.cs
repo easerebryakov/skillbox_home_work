@@ -1,9 +1,25 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using TwitterConsole.Helpers;
 
 namespace TwitterConsole.Tests
 {
+	[TestFixture]
+	public class StringHelperTests
+	{
+		[TestCase("a", 1, "a")]
+		[TestCase("a", 0, "")]
+		[TestCase("ab", 1, "a")]
+		[TestCase("abc", 10, "abc")]
+		[TestCase("a", -1, "")]
+		public void CutTests(string inputString, int maxLength, string expectedString)
+		{
+			var result = StringHelper.Cut(inputString, maxLength);
+			Assert.AreEqual(expectedString, result);
+		}
+	}
+
 	[TestFixture]
 	public class DateTimeCalculatorTests
 	{
