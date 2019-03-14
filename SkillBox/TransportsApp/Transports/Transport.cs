@@ -17,5 +17,10 @@ namespace TransportsApp
 		{
 			Console.WriteLine($"{Name} {Id} передвигается неизвестно как");
 		}
+
+		public override string ToString()
+		{
+			return $"{Name} {Id}";
+		}
 	}
 }

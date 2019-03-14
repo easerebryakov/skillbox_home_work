@@ -55,6 +55,7 @@
     <Compile Include="Transports\Land\LandTransport.cs" />
     <Compile Include="Transports\Railway\ElectricityTrolley.cs" />
     <Compile Include="Transports\Railway\RailwayTransport.cs" />
+    <Compile Include="Transports\Station.cs" />
     <Compile Include="Transports\Transport.cs" />
     <Compile Include="Transports\Water\MotorBoatOnFuel.cs" />
     <Compile Include="Transports\Water\WaterTransport.cs" />
