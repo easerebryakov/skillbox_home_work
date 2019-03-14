@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,8 @@ namespace TwitterConsole
 
 		private static void Run()
 		{
-			const string consumerKey = "";
-			const string consumerSecret = "";
-			var service = new TwitterService(consumerKey, consumerSecret);
+			var configuration = new TwitterAppConfiguration();
+			var service = new TwitterService(configuration.ConsumerKey, configuration.ConsumerSecret);
 			var requestToken = service.Execute(ts => ts.GetRequestToken());
 			var uri = service.Execute(ts => ts.GetAuthorizationUri(requestToken));
 			Process.Start(uri.ToString());
@@ -65,15 +65,17 @@ namespace TwitterConsole
 			#region trends
 
 			Console.WriteLine("Тренды:");
-			var trends = service.Execute(ts => ts.ListLocalTrendsFor(new ListLocalTrendsForOptions {Id = 1})); // 1 - весь мир
+			var trendsNames = service
+				.Execute(ts => ts.ListLocalTrendsFor(new ListLocalTrendsForOptions { Id = 1 }))
+				.Select(t => t.Name); // 1 - весь мир
 
-			foreach (var trend in trends)
+			foreach (var trendName in trendsNames)
 			{
-				Console.WriteLine(trend.Name);
+				Console.WriteLine(trendName);
 				Console.WriteLine();
 			}
 
-			var trendsSharpString = GetTrendsSharpString(trends);
+			var trendsSharpString = GetTrendsSharpString(trendsNames);
 			Console.WriteLine(trendsSharpString);
 
 			#endregion
@@ -92,14 +94,14 @@ namespace TwitterConsole
 			return $"{result}\n";
 		}
 
-		private static string GetTrendsSharpString(TwitterTrends trends)
+		private static string GetTrendsSharpString(IEnumerable<string> trendsNames)
 		{
 			const string separator = " ***** ";
 			var strBuilder = new StringBuilder();
-			foreach (var trend in trends)
+			foreach (var trendName in trendsNames)
 			{
-				if (trend.Name.StartsWith("#"))
-					strBuilder.Append($"{trend.Name}{separator}");
+				if (trendName.StartsWith("#"))
+					strBuilder.Append($"{trendName}{separator}");
 			}
 
 			var result = strBuilder.ToString().SubstringBeforeLastIndex(separator);
