@@ -62,23 +62,7 @@ namespace TwitterConsole
 
 			#endregion
 
-			#region trends
-
-			Console.WriteLine("Тренды:");
-			var trendsNames = service
-				.Execute(ts => ts.ListLocalTrendsFor(new ListLocalTrendsForOptions { Id = 1 }))
-				.Select(t => t.Name); // 1 - весь мир
-
-			foreach (var trendName in trendsNames)
-			{
-				Console.WriteLine(trendName);
-				Console.WriteLine();
-			}
-
-			var trendsSharpString = GetTrendsSharpString(trendsNames);
-			Console.WriteLine(trendsSharpString);
-
-			#endregion
+			ShowTrends(service);
 		}
 
 		private static string GetHashTagsDescription(string tweetText)
@@ -106,6 +90,28 @@ namespace TwitterConsole
 
 			var result = strBuilder.ToString().SubstringBeforeLastIndex(separator);
 			return result;
+		}
+
+		private static void ShowTrends(TwitterService service)
+		{
+			Console.WriteLine("Тренды:");
+			var trendsNames = service
+				.Execute(ts => ts.ListLocalTrendsFor(new ListLocalTrendsForOptions { Id = 1 }))
+				.Select(t => t.Name)
+				.ToList(); // 1 - весь мир
+
+			trendsNames.Sort();
+
+			Console.WriteLine($"Количество трендов - {trendsNames.Count}");
+
+			foreach (var trendName in trendsNames)
+			{
+				Console.WriteLine(trendName);
+				Console.WriteLine();
+			}
+
+			var trendsSharpString = GetTrendsSharpString(trendsNames);
+			Console.WriteLine(trendsSharpString);
 		}
 	}
 }
