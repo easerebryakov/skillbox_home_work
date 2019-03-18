@@ -46,8 +46,9 @@ namespace OnlineStoreV2
 					return;
 				}
 				var executionSuccess = storage.TryExecuteNextOrder(out var orderNumber);
-				if (executionSuccess)
-					Console.WriteLine($"Заказ '{orderNumber}' выполнен");
+				Console.WriteLine(executionSuccess
+					? $"Заказ '{orderNumber}' выполнен"
+					: $"Заказ '{orderNumber}' не удалось выполнить");
 			});
 		}
 	}

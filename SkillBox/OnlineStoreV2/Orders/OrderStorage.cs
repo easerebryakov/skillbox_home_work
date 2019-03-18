@@ -62,7 +62,7 @@ namespace OnlineStoreV2
 		public bool CheckFreeSlots(out int freeSlots)
 		{
 			freeSlots = maxOrders - ordersQueue.Count;
-			return ordersQueue.Count < maxOrders;
+			return freeSlots > 0;
 		}
 
 		public int GetOrdersCountInQueue() => ordersQueue.Count;

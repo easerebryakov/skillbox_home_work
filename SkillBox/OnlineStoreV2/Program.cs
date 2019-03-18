@@ -27,7 +27,7 @@ namespace OnlineStoreV2
 
 			var worker = new ConsoleActionsWorker(action, new WorkerSettings
 			{
-				SelectDescription = "Выберете действие",
+				SelectDescription = "Введите номер действия",
 				ReselectDescriptionIfUnknownAction = "Указанное действие не найдено. Повторите выбор"
 			});
 
