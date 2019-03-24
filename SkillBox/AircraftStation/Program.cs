@@ -49,7 +49,7 @@ namespace AircraftStation
 		{
 			return WorkAction.CreateNew(ctx1 =>
 			{
-				if (Station.GetAircraftsCountInStation() == 0)
+				if (Station.GetAircraftsCountOnStation() == 0)
 				{
 					Console.WriteLine("Нельзя отправить, т.к. ничего нет");
 					return;

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AircraftStation
 {
-	public class Station
+	public class Station : IStation
 	{
+		public EventHandler OnStationStateChange { get; set; }
+
 		private readonly int maxAircrafts;
 		
 		private readonly Stack<Aircraft> aircraftsStack;
@@ -23,6 +26,7 @@ namespace AircraftStation
 			{
 				var aircraft = new Aircraft(id);
 				aircraftsStack.Push(aircraft);
+				OnStationStateChange?.Invoke(this, EventArgs.Empty);
 			}
 
 			return true;
@@ -35,6 +39,7 @@ namespace AircraftStation
 				return false;
 			var nextAircraft = aircraftsStack.Pop();
 			aircraftId = nextAircraft.Id;
+			OnStationStateChange?.Invoke(this, EventArgs.Empty);
 			return true;
 		}
 
@@ -44,6 +49,10 @@ namespace AircraftStation
 			return freeSlots > 0;
 		}
 
-		public int GetAircraftsCountInStation() => aircraftsStack.Count;
+		public int GetAircraftsCountOnStation() => aircraftsStack.Count;
+
+		public bool AnyAircraftsOnStation() => aircraftsStack.Any();
+
+		public bool CheckOnAircraftOnStation(string id) => aircraftsStack.Any(a => a.Id == id);
 	}
 }

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace OnlineStoreV2
 {
-	public class OrderStorage
+	public class OrderStorage : IOrderStorage
 	{
 		public HashSet<Order> ArchivalOrders { get; }
 

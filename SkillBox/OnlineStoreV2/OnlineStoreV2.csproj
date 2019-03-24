@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ActionsHelper.cs" />
     <Compile Include="ActionsKeys.cs" />
+    <Compile Include="Orders\IOrderStorage.cs" />
     <Compile Include="Orders\OrderState.cs" />
     <Compile Include="Orders\OrderStorage.cs" />
     <Compile Include="Orders\Order.cs" />

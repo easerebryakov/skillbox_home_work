@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aircrafts\Aircraft.cs" />
+    <Compile Include="Aircrafts\IStation.cs" />
     <Compile Include="Aircrafts\Station.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
